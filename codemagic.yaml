@@ -19,6 +19,9 @@ workflows:
       - name: Install dependencies
         script: |
           npm ci || npm install
+      - name: Generate Capacitor android assets
+        script: |
+          npx capacitor-assets generate --android
       - name: Build React application
         script: |
           npm run build
