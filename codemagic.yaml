@@ -1,0 +1,46 @@
+# Codemagic CI/CD configuration for APEX Android App (Capacitor)
+# To build, push this repository to GitHub and click "Start build" in Codemagic.
+
+workflows:
+  android-apk:
+    name: APEX IPTV Android Build
+    max_build_duration: 30
+    instance_type: mac_mini_m1 # Standard powerful builder compatible with Android builds
+    environment:
+      node: latest
+      java: 21
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci || npm install
+      - name: Build React application
+        script: |
+          npm run build
+      - name: Synchronize build assets to Android project
+        script: |
+          npx cap sync
+      - name: Build native Android App (Debug APK)
+        script: |
+          cd android
+          # Clean and restore/download uncorrupted gradle-wrapper.jar
+          mkdir -p gradle/wrapper
+          curl -sSLo gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.14.3/gradle/wrapper/gradle-wrapper.jar || \
+          curl -sSLo gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/master/gradle/wrapper/gradle-wrapper.jar || \
+          gradle wrapper --gradle-version 8.14.3
+          chmod +x gradlew
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/apk/debug/*.apk
+    publishing:
+      email:
+        recipients:
+          - apexv10ultimate@gmail.com # Automatically sends the compiled APK directly to your email
+        notify:
+          success: true
+          failure: true

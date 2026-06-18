@@ -1,0 +1,15 @@
+{
+  "appId": "com.apexv10ultimate.app",
+  "appName": "APEX",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "vavoo.to",
+      "*.vavoo.to"
+    ]
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

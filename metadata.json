@@ -1,0 +1,6 @@
+{
+  "name": "APEX TV Studio",
+  "description": "A developer portal, design customizer, and source code constructor for the APEX TV Android WebView wrapper application.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
