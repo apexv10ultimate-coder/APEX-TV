@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">APEX</string>
-    <string name="title_activity_main">APEX</string>
+    <string name="app_name">APEX TV</string>
+    <string name="title_activity_main">APEX TV</string>
     <string name="package_name">com.apexv10ultimate.app</string>
     <string name="custom_url_scheme">com.apexv10ultimate.app</string>
 </resources>
